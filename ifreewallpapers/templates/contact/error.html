@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}
+    {% trans "Contact us" %}
+{% endblock %}
+
+{% block content %}
+    <div class="block">
+        <h2>{% trans "Contact us" %}</h2>
+        <div class="block-content">
+            <p>
+                {% trans "There was an error sending your message. Please try again later." %}
+            </p>
+        </div>
+    </div>
+{% endblock %}

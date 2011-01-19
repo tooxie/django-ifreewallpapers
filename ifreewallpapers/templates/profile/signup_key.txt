@@ -1,0 +1,10 @@
+{% load i18n %}
+{% blocktrans %}Hey {{ name }}!{% endblocktrans %}
+
+{% trans "The account you requested for ifreewallpapers.com has been created! To activate it you need to just follow this link:" %}
+    {{ site_url }}{% url signup-key registration.key %}?{% trans "email" %}={{ email|urlencode }}
+
+{% trans "Once you finished the process you can login using your e-mail and this password:" %}
+    {{ password }}
+
+{% trans "Now you can share and download the best wallpapers on the net, and make new friends while you are at it." %}

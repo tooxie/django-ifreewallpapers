@@ -1,0 +1,37 @@
+div#avatar img {
+    border:2px inset black;
+    vertical-align:top;
+    margin-right:15px;
+}
+
+div#personal {
+    width:400px;
+    float;left;
+}
+
+div#personal div {
+    margin-bottom:0.7em;
+    color:#444444;
+}
+
+div#edit-about {
+    float:left;
+    margin-right:0.3em;
+}
+
+div#location, div#map {
+    width:530px;
+    height:340px;
+    border:2px inset black;
+    overflow:hidden;
+}
+
+div#location {
+    float:right;
+}
+
+div label.public {
+    display:inline;
+    float:none;
+    margin-left:1em;
+}

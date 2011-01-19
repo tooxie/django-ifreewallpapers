@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load i18n onthefly_thumbnail %}
+{% block css %}
+    <link href="{{ CSS_URL }}home.css" type="text/css" rel="stylesheet">
+    <link href="{{ CSS_URL }}limbo.css" type="text/css" rel="stylesheet">
+{% endblock %}
+{% block title %}{% trans "Free Wallpapers Limbo" %}{% endblock %}
+{% block class %} class="limbo"{% endblock %}
+{% block home %}{% url limbo %}{% endblock %}
+{% block content %}
+    {% if wallpaper_list %}
+        <div class="set">
+            <h2>
+                {% trans "Wallpapers on the Limbo" %}
+            </h2>
+            <div class="block-content wplist clearfix">
+                {% for wallpaper in wallpaper_list %}
+                    <div class="wallpaper">
+                        <a href="{% url view_wallpaper wallpaper.slug %}" title="{{ wallpaper.get_title }}"><img src="{% thumb wallpaper.file 256x160 %}" alt="{{ wallpaper.title }}"></a>
+                    </div>
+                {% endfor %}
+            </div>
+            {% if is_paginated %}
+                <div class="clearfix">
+                    {% if has_previous %}
+                        <div id="less">
+                            <a href="{% url limbo %}?{% trans "page" %}={{ previous }}">{% trans "<< Previous" %}</a>
+                        </div>
+                    {% endif %}
+                    {% if has_next %}
+                        <div id="more">
+                            <a href="{% url limbo %}?{% trans "page" %}={{ next }}">{% trans "More >>" %}</a>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
+    <div class="whatis">
+        <!-- TODO: -->
+        <!-- TODO: Escribir las FAQ. -->
+        <a href="{% url faq-limbo %}">{% trans "What is the limbo?" %}</a> |
+        <a href="{% url home %}">{% trans "Go back to the homepage." %}</a>
+    </div>
+{% endblock %}
+

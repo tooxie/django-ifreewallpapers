@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block robots %}noindex,nofollow{% endblock %}
+{% block title %}{% trans "e-Mail sent" %}{% endblock %}
+{% block content %}
+    <div class="block">
+        <h2>{% trans "Check your inbox" %}</h2>
+        <div class="block-content">
+            <p>
+                <!-- TODO: -->
+                <!-- TODO: Prolijear esto. -->
+                {% trans "An e-mail was sent to the address you provided with a link, which you need to follow in order to complete the registration process." %}
+            </p>
+        </div>
+    </div>
+{% endblock %}

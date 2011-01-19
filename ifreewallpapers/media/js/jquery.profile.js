@@ -1,0 +1,1 @@
+../userprofile/js/jquery.profile.js

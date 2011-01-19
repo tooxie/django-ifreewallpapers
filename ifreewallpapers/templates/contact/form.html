@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block css %}
+    <link href="{{ CSS_URL }}core.css" type="text/css" rel="stylesheet" />
+{% endblock %}
+{% block title %}
+    {% trans "Contact us" %}
+{% endblock %}
+{% block content %}
+    <div class="block">
+        <h2>{% trans "Contact us" %}</h2>
+        <div class="block-content">
+            <form action="{% url contact_us %}" method="post">
+                {{ form.as_p }}
+                <p>
+                    <input type="submit" name="send" value="{% trans "Send message!" %}" />
+                </p>
+            </form>
+        </div>
+    </div>
+{% endblock %}

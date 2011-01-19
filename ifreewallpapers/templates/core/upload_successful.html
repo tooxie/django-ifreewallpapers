@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}
+    {% trans "Success!" %}
+{% endblock %}
+{% block content %}
+    <h2>
+        {% trans "Upload successful!" %}
+    </h2>
+    <h3>
+        {{ title }}{% if author %} {% trans "by" %} {{ author }}{% endif %}
+    </h3>
+    <p>
+        {% blocktrans %}
+            The wallpaper was uploaded successfuly!
+        {% endblocktrans %}
+    </p>
+    <p>
+        {% trans "Now you can" %} <a href="{% url view_wallpaper slug %}">{% trans "see your new wallpaper" %}</a> {% trans "or" %} <a href="{% url upload_wallpaper %}">{% trans "upload another" %}</a>.
+    </p>
+{% endblock %}

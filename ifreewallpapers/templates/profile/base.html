@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block css %}
+    {# <link href="{{ CSS_URL }}django-profile.css" type="text/css" rel="stylesheet" /> #}
+    <link href="{{ CSS_URL }}profile/profile.css" type="text/css" rel="stylesheet" />
+    <link href="{{ CSS_URL }}profile/base.css" type="text/css" rel="stylesheet" />
+    <link href="{{ CSS_URL }}profile/datepicker.css" type="text/css" rel="stylesheet" />
+    <link href="{{ CSS_URL }}blog.css" type="text/css" rel="stylesheet" />
+{% endblock %}
+{% block javascript %}
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-1.2.6.min.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/datepicker.js"></script>
+    {% block extrajs %}
+    {% endblock %}
+{% endblock %}
+{% block body_class %}profile{% endblock %}
+{% block content %}
+{% endblock %}

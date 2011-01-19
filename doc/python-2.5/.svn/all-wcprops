@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 32
+/!svn/ver/25/doc/python-docs-2.5
+END
+whatsnew25.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/!svn/ver/25/doc/python-docs-2.5/whatsnew25.pdf
+END
+reference_manual.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/!svn/ver/25/doc/python-docs-2.5/reference_manual.pdf
+END
+documenting.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/!svn/ver/25/doc/python-docs-2.5/documenting.pdf
+END
+installing_modules.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/!svn/ver/25/doc/python-docs-2.5/installing_modules.pdf
+END
+distributing_modules.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/!svn/ver/25/doc/python-docs-2.5/distributing_modules.pdf
+END
+pep_257-docstring_conventions.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/!svn/ver/25/doc/python-docs-2.5/pep_257-docstring_conventions.pdf
+END
+macintosh_library_modules.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/!svn/ver/25/doc/python-docs-2.5/macintosh_library_modules.pdf
+END
+library_reference.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/!svn/ver/25/doc/python-docs-2.5/library_reference.pdf
+END
+pep_8-syle_guide_for_python_code.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/!svn/ver/25/doc/python-docs-2.5/pep_8-syle_guide_for_python_code.pdf
+END
+tutorial.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/!svn/ver/25/doc/python-docs-2.5/tutorial.pdf
+END
+decorators.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/!svn/ver/25/doc/python-docs-2.5/decorators.pdf
+END
+extending_and_embedding.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/!svn/ver/25/doc/python-docs-2.5/extending_and_embedding.pdf
+END
+c_api_reference_manual.pdf
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/!svn/ver/25/doc/python-docs-2.5/c_api_reference_manual.pdf
+END

@@ -1,0 +1,4 @@
+<h4 class="posttitle"><a href="{% url blog-view_post post.blog.owner.username post.slug %}">{{ post.title }}</a></h4>
+<div class="postbody">
+    {{ post.html|safe }}
+</div>

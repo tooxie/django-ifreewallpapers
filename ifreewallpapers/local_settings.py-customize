@@ -1,0 +1,54 @@
+# coding=UTF-8
+
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+
+# Activar PREPEND_WWW solo en producción
+PREPEND_WWW = not DEBUG
+SEND_BROKEN_LINK_EMAILS = not DEBUG
+
+ADMINS = (
+    # (u'Nombre Apellido', 'correo@email.net'),
+)
+
+MANAGERS = ADMINS
+
+DATABASE_ENGINE = 'mysql'
+DATABASE_NAME = 'wallpapers'
+DATABASE_USER = ''
+DATABASE_PASSWORD = ''
+
+TIME_ZONE = 'America/Montevideo'
+
+USE_I18N = True
+
+DATE_FORMAT = 'l j de F de Y'
+TIME_FORMAT = 'H:i:s'
+DATETIME_FORMAT = DATE_FORMAT, TIME_FORMAT
+
+COMMENT = 'http://www.ifreewallpapers.com/'
+
+# MEDIA - Uncomment only in production
+# MEDIA_URL = 'http://media.ifreewallpapers.com/'
+# ADMIN_MEDIA_PREFIX = '/admin/'
+PROJECT_URL = 'http://www.ifreewallpapers.com'
+
+# IMG_URL = '%simages/' % MEDIA_URL
+# CSS_URL = '%scss/' % MEDIA_URL
+# JS_URL = '%sjs/' % MEDIA_URL
+
+LOGIN_URL = '/accounts/login/'
+LOGOUT_URL = '/accounts/logout/'
+SIGNUP_URL = '/accounts/signup/'
+
+# EMAIL
+EMAIL_SUBJECT_PREFIX = '[iFreeWallpapers.com] '
+DEFAULT_FROM_NAME = 'iFreeWallpapers.com Admin'
+DEFAULT_FROM_EMAIL = 'admin@ifreewallpapers.com'
+EMAIL_HOST = ''
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+# Pah, este título me suena tan a penis enlargement. Típico de spam.
+EMAIL_TELL_A_FRIEND_SUBJECT = "You'll love this"
+
+SERVER_EMAIL = DEFAULT_FROM_EMAIL

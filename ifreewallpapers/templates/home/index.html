@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load i18n onthefly_thumbnail tagging_tags avatars markup %}
+{% block css %}
+    <link href="{{ CSS_URL }}home.css" type="text/css" rel="stylesheet">
+	<link href="{{ CSS_URL }}slideshow.css" type="text/css" rel="stylesheet" media="screen">
+{% endblock %}
+{% block javascript %}
+    {# <script type="text/javascript" src="{{ JS_URL }}mootools.js"></script> #}
+    {# <script type="text/javascript" src="{{ JS_URL }}slideshow.js"></script> #}
+    {# <script type="text/javascript" src="{{ JS_URL }}slideshow.kenburns.js"></script> #}
+    {# <script type="text/javascript" src="{{ JS_URL }}home.js"></script> #}
+{% endblock %}
+{% block title %}
+    {% trans "Free wallpapers for your desktop background" %}
+{% endblock %}
+{% block content %}
+    <h2 class="hideme">{% trans "Home" %}</h2>
+    {% if top_downloaded %}
+        <div class="set">
+            <h3>
+                {% trans "Top downloaded wallpapers" %}
+            </h3>
+            <div class="block-content wplist clearfix">
+                {% for wallpaper in top_downloaded %}
+                    <div class="wallpaper">
+                        <a href="{% url view_wallpaper wallpaper.slug %}" title="{{ wallpaper.get_title }} {% trans "wallpaper" %}"><img src="{% thumb wallpaper.file 256x160 %}" alt="{{ wallpaper.get_title }} {% trans "wallpaper" %}"></a>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="more">
+                <a href="{% url downloaded %}" title="{% trans "Top downloaded wallpapers" %}">{% trans "All wallpapers" %}</a>
+            </div>
+        </div>
+    {% endif %}
+    {% if highlight %}
+        <div class="set-slideshow">
+            <h3 class="hideme">
+                {% trans "The most viewed wallpaper" %}
+            </h3>
+            {% comment %}
+            <!-- FIXME: -->
+            <!-- FIXME: El wallpaper recortado para slide no se recorta en el centro, por lo tanto se ve torcido -->
+            {% endcomment %}
+            <div class="slideholder clearfix">
+                <div id="slide-top-new" class="slideshow">
+                    <a href="{% url view_wallpaper highlight.slug %}" id="a-{{ highlight.slug }}" title="{{ highlight.get_title }} {% trans "wallpaper" %}"><img src="{% thumb highlight.file 500x400 %}" name="{{ highlight.slug }}" alt="{{ highlight.get_title }} {% trans "wallpaper" %}" class="slide-top-new-image"></a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% if top_new %}
+        <div class="set">
+            <h3>
+                {% trans "The newest wallpapers" %}
+            </h3>
+            <div class="block-content wplist clearfix">
+                <!-- Nothing to see here -->
+                {% for wallpaper in top_new %}
+                    <div class="wallpaper">
+                        <a href="{% url view_wallpaper wallpaper.slug %}" title="{{ wallpaper.get_title }} {% trans "wallpaper" %}"><img src="{% thumb wallpaper.file 256x160 %}" alt="{{ wallpaper.get_title }} {% trans "wallpaper" %}"></a>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="more">
+                <a href="{% url latest %}" title="Newest wallpapers">{% trans "All wallpapers" %}</a>
+            </div>
+        </div>
+    {% endif %}
+    <div class="clearfix">
+        {% if top_comments %}
+            <div class="set-comments">
+                <h3>
+                    {% trans "Latest comments on wallpapers" %}
+                </h3>
+                <div class="block-content">
+                    {% for comment in top_comments %}
+                        <div class="comment">
+                            <div class="avatar">
+                                <a href="{% url view_wallpaper comment.content_object.slug %}" title="{{ comment.content_object.title }} {% trans "wallpaper" %}"><img src="{% avatar comment.user %}" alt="{{ comment.user.get_full_name }}"></a><br>
+                                <a href="{% url view_wallpaper comment.content_object.slug %}">{{ comment.user.get_full_name }}</a>
+                            </div>
+                            <div class="wallpaper">
+                                <a href="{% url view_wallpaper comment.content_object.slug %}" title="{{ comment.content_object.title }} {% trans "wallpaper" %}"><img src="{% thumb comment.content_object.file 96 %}" alt="{{ comment.content_object.title }} {% trans "wallpaper" %}"></a><br>
+                                <a href="{% url view_wallpaper comment.content_object.slug %}" title="{{ comment.content_object.title }} {% trans "wallpaper" %}">{{ comment.content_object.title }}</a>
+                            </div>
+                            {{ comment.comment|linebreaks }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+        {% if see_also %}
+            <div id="seealso" class="set">
+                <h3>
+                    {% trans "Check these wallpapers" %}
+                </h3>
+                <div class="block-content wpminilist clearfix">
+                    {% for wallpaper in see_also %}
+                        <div class="miniwallpaper">
+                            <a href="{% url view_wallpaper wallpaper.slug %}" title="{{ wallpaper.get_title }} {% trans "wallpaper" %}"><img src="{% thumb wallpaper.file 192x120 %}" alt="{{ wallpaper.get_title }} {% trans "wallpaper" %}"></a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+    <div class="set">
+        <h3>
+            {% trans "Wallpaper tag cloud" %}
+        </h3>
+        <div class="block-content clearfix">
+            {% tag_cloud_for_model core.wallpaper as wallpaper_tags with steps=4 distribution=log %}
+            {% for tag in wallpaper_tags %}
+                {% comment %}
+                <!-- FIXME: -->
+                <!-- FIXME: Sacar estos estilos de acá. -->
+                {% endcomment %}
+                <a href="{% url objects_tagged tag.name %}" title="{{ tag.name }} {% trans "wallpapers" %}"><span style="font-size:{{ tag.font_size }}em">{{ tag }}</span></a>{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Preview your comment" %}{% endblock %}
+
+{% block content %}
+    {% load comments %}
+    <form action="{% comment_form_target %}" method="post">
+        {% if form.errors %}
+            <p>
+                {% blocktrans count form.errors|length as counter %}Please correct the error below{% plural %}Please correct the errors below{% endblocktrans %}
+            </p>
+        {% else %}
+            <h3>{% trans "Your comment" %}</h3>
+            <div class="comment">
+                {{ comment|escape|urlizetrunc:"40"|linebreaks }}
+            </div>
+            <p>
+                <input type="submit" name="post" value="{%trans "Post it!" %}" />
+            </p>
+            <hr />
+            <h3>{% trans "Or edit it again" %}</h3>
+        {% endif %}
+        {% if form.comment.errors %}
+            {{ comment_form.comment.html_error_list }}
+        {% endif %}
+        <p>
+            <label for="id_comment">{% trans "Comment" %}:</label>
+        </p>
+        {% for field in form %}
+            {% if field.is_hidden %}
+                {{ field }}
+            {% else %}
+                {% ifequal field.name "honeypot" %}
+                    <div class="hideme">
+                        {{ field.label_tag }} {{ field }}
+                    </div>
+                {% endifequal %}
+            {% endif %}
+        {% endfor %}
+        <div>
+            <textarea name="comment" id="id_comment" rows="10" cols="60">{{ comment }}</textarea>
+        </div>
+        <p>
+            <input type="submit" name="preview" value="Preview again" />
+        </p>
+    </form>
+{% endblock %}

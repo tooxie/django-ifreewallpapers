@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block css %}
+    <link href="{{ CSS_URL }}blog.css" type="text/css" rel="stylesheet" />
+{% endblock %}
+{% block title %}{{ blog.title }}{% endblock %}
+{% block content %}
+    {% for post in posts %}
+        <h2 class="posttitle">
+            <a href="{% url blog-view_post post.blog.owner.username post.slug %}">{{ post.title }}</a>
+        </h2>
+        <div class="postinfo">
+            {% blocktrans with post.cdate as creation %}
+                Written on {{ creation }}
+            {% endblocktrans %}
+        </div>
+        <div class="postbody">
+            {{ post.html|safe }}
+        </div>
+    {% endfor %}
+{% endblock %}

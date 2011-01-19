@@ -1,0 +1,127 @@
+{% load i18n comments avatars markup %}
+{# TODO: #}
+{# TODO: Marcar comentarios como inapropiados #}
+<h3>
+    {% trans "Comments" %}
+</h3>
+<div class="block-content">
+    {% if wallpaper %}
+        {% get_comment_count for core.wallpaper wallpaper.id as comment_count %}
+    {% endif %}
+    {% if profile %}
+        {% get_comment_count for profile.profile profile.id as comment_count %}
+    {% endif %}
+    {% ifequal comment_count 0 %}
+        <div>
+            {% trans "There are no comments yet, be the first!" %}
+        </div>
+    {% else %}
+        <div>
+            {% if wallpaper %}
+                {% get_comment_list for core.wallpaper wallpaper.id as comment_list %}
+            {% endif %}
+            {% if profile %}
+                {% get_comment_list for profile.profile profile.id as comment_list %}
+            {% endif %}
+            {% for comment in comment_list %}
+                <div class="comment">
+                    <div class="avatar">
+                        <img src="{% avatar comment.user %}" alt="{{ comment.user.get_full_name }}" />
+                    </div>
+                    <div>
+                        <div>
+                            {% trans "By" %} <a href="{% url profile comment.user.get_profile.slug %}">{{ comment.user.get_full_name }}</a> {% trans "on" %} {{ comment.submit_date }}
+                        </div>
+                    </div>
+                    <div>
+                        {{ comment.comment|textile }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endifequal %}
+    <hr />
+    {% if user.is_authenticated %}
+        <form {% if photos_optional or photos_required %}enctype="multipart/form-data" {% endif %}action="{% comment_form_target %}" method="post">
+            <div>
+                {% trans "Username:" %} <span class="commenter">{{ user.get_full_name }}</span> (<a href="{{ logout_url }}">{% trans "Log out" %}</a>)
+            </div>
+
+            {% if ratings_optional or ratings_required %}
+                <p>
+                    {% trans "Ratings" %} ({% if ratings_required %}{% trans "Required" %}{% else %}{% trans "Optional" %}{% endif %}):
+                </p>
+                <!-- FIXME: Eliminar esta tabla. -->
+                <table>
+                    <tr>
+                        <th>
+                            &nbsp;
+                        </th>
+                        {% for value in rating_range %}
+                            <th>{{ value }}</th>
+                        {% endfor %}
+                    </tr>
+                    {% for rating in rating_choices %}
+                        <tr>
+                            <th>{{ rating }}</th>
+                            {% for value in rating_range %}
+                                <th>
+                                    <input type="radio" name="rating{{ forloop.parentloop.counter }}" value="{{ value }}" />
+                                </th>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table>
+                <input type="hidden" name="rating_options" value="{{ rating_options }}" />
+            {% endif %}
+
+            {% if photos_optional or photos_required %}
+                <p>
+                    <label for="id_photo">{% trans "Post a photo" %}</label> ({% if photos_required %}{% trans "Required" %}{% else %}{% trans "Optional" %}{% endif %}):
+                    <input type="file" name="photo" id="id_photo" />
+                </p>
+                <input type="hidden" name="photo_options" value="{{ photo_options }}" />
+            {% endif %}
+
+            <p>
+                <div>
+                    <label for="id_comment">{% trans "Comment:" %}</label>
+                </div>
+                <div>
+                    <textarea name="comment" id="id_comment" rows="10" cols="60"></textarea>
+                </div>
+            </p>
+            {% for field in form %}
+                {% if field.is_hidden %}
+                    {{ field }}
+                {% else %}
+                    {% ifequal field.name "honeypot" %}
+                        <div class="hideme">
+                            {{ field.label_tag }} {{ field }}
+                        </div>
+                    {% endifequal %}
+                {% endif %}
+            {% endfor %}
+            <p>
+                <div class="clearfix">
+                    <div id="comment-preview">
+                        <input type="submit" name="preview" value="{% trans "Preview comment" %}" />
+                    </div>
+                    <div id="comment-post">
+                        <input type="submit" name="post" value="{% trans "Or just post it" %}" />
+                    </div>
+                </div>
+            </p>
+        </form>
+    {% else %}
+        <div>
+            {% trans "Only logged in users can comment." %}
+            {% if wallpaper %}
+                <a href="{% url account-login %}?{% trans "next" %}={% url view_wallpaper wallpaper.slug %}">{% trans "Login" %}</a> {% trans "or" %} <a href="{% url signup %}?next={% url view_wallpaper wallpaper.slug %}">{% trans "signup" %}</a>.
+            {% endif %}
+            {% if profile %}
+                <a href="{% url account-login %}?{% trans "next" %}={% url profile profile.slug %}">{% trans "Login" %}</a> {% trans "or" %} <a href="{% url signup %}?next={% url profile profile.slug %}">{% trans "signup" %}</a>.
+            {% endif %}
+        </div>
+    {% endif %}
+</div>

@@ -1,0 +1,19 @@
+{% extends "profile/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "User registration" %}{% endblock %}
+{% block robots %}noindex,nofollow{% endblock %}
+
+{% block content %}
+    <div class="block">
+        <h2>{% trans "User registration" %}</h2>
+        <div class="block-content">
+            <form action="" method="post" accept-charset="utf-8">
+            {{ signup_form.as_p }}
+                <p>
+                    <input type="submit" value="{% trans 'Register' %}" />
+                </p>
+            </form>
+        </div>
+	</div>
+{% endblock %}

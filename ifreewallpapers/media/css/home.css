@@ -1,0 +1,56 @@
+div.set img {
+    border:1px solid black;
+}
+
+div.slideholder {
+    background-image:url(../img/slideshow.gif);
+    background-repeat:no-repeat;
+    width:560px;
+    padding:38px 0 25px 30px;
+    margin:0 auto;
+}
+
+div.slideshow {
+    width:500px;
+    height:400px;
+    float:left;
+    text-align:center;
+    margin:0 auto;
+    background-color:black;
+    border:1px solid black;
+    overflow:hidden;
+}
+
+div.set {
+    background-image:url(../img/stripset.jpg);
+    border:1px solid black;
+    text-align:center;
+    margin-bottom:25px;
+}
+
+div.set-slideshow {
+    margin-bottom:25px;
+    text-align:center;
+}
+
+div.set h3, div.set-comments h3, div.set h2, div.set-comments h2 {
+    background-color:black;
+    background-image:url(../img/striptitle.jpg);
+    background-repeat:repeat-x;
+    height:1.4em;
+    color:white;
+    margin:0;
+    padding:0;
+    text-align:center;
+    font-size: 1.3em;
+}
+
+h3 img, h2 img {
+    margin:0;
+    padding:0;
+}
+
+div.more {
+    text-align:right;
+    margin:-33px 2em 1em 0;
+}

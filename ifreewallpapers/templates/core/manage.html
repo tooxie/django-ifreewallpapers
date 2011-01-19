@@ -1,0 +1,34 @@
+{% extends "core/base.html" %}
+{% load i18n onthefly_thumbnail %}
+
+{% block title %}{% trans "Edit wallpaper information" %}{% endblock %}
+{% block robots %}noindex,nofollow{% endblock %}
+
+{% block content %}
+    <div class="block">
+        <h2>{{ wallpaper.title }}</h2>
+        <div class="block-content clearfix">
+            <div id="wallpaper-wrapper">
+                <div id="wallpaper">
+                    <img src="{% thumb wallpaper.file 600 %}" alt="{{ wallpaper.title }}" />
+                </div>
+            </div>
+            <div id="options">
+                <form action="{% url manage_wallpaper wallpaper.slug %}" method="post">
+                    {{ manage.as_p }}
+                    <p>
+                        <input type="submit" name="submit" value="{% trans "Save changes" %}" />
+                    </p>
+                </form>
+                <!--
+                <form action="{% url orphan_wallpaper %}" method="post">
+                    <input type="hidden" name="wallpaper" value="{{ wallpaper.slug }}" />
+                    <p>
+                        <button>{% trans "Orphan this wallpaper!" %}</button>
+                    </p>
+                </form>
+                -->
+            </div>
+        </div>
+    </div>
+{% endblock %}

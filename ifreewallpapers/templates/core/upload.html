@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}
+    {% trans "Upload wallpaper" %}
+{% endblock %}
+{% block css %}
+    <link href="{{ CSS_URL }}core.css" type="text/css" rel="stylesheet" media="screen" />
+{% endblock %}
+{% block content %}
+    <div class="block">
+        <h2>{% trans "Upload Wallpaper" %}</h2>
+        <div class="block-content">
+            <form enctype="multipart/form-data" action="/upload/wallpaper/" method="post" id="upload-wallpaper-form">
+                {{ form.as_p }}
+                <span class="help">{% trans "Check this box if it contains material restricted for adults, like nudity or violence." %}</span>
+                <div class="submit">
+                    <input type="submit" name="send" value="{% trans "Upload my wallpaper!" %}">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+

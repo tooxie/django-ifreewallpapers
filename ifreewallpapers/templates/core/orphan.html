@@ -1,0 +1,22 @@
+{% extends "core/base.html" %}
+{% load i18n onthefly_thumbnail %}
+{% block robots %}nolink,nofollow{% endblock %}
+{% block title %}{% trans "Orphan wallpaper" %}{% endblock %}
+{% block content %}
+    <div class="block">
+        <h2>{{ wallpaper.title }}</h2>
+        <div class="block-content clearfix">
+            <div>
+                {% trans "Are you sure you want to orphan this wallpaper?" %}
+            </div>
+            <div id="wallpaper">
+                <img src="{% thumb wallpaper.file 600 %}" alt="{{ wallpaper.get_title }}" />
+            </div>
+            <form action="{% url orphan_wallpaper %}" method="post">
+                <input type="hidden" name="wallpaper" value="{{ wallpaper.slug }}" />
+                <input type="hidden" name="gonzo" value="{{ gonzo }}" />
+                <input type="submit" name="confirm" value="Yes, I won't miss it" />
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,408 @@
+[{
+    "pk": 1,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "2560",
+		"height": "1440",
+        "relation": "16:9",
+        "result": "1.7777777777777777",
+        "type": "hd"
+    }
+},
+{
+    "pk": 2,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "1920",
+		"height": "1080",
+        "relation": "16:9",
+        "result": "1.7777777777777777",
+        "type": "hd"
+    }
+},
+{
+    "pk": 3,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "1280",
+		"height": "720",
+        "relation": "16:9",
+        "result": "1.7777777777777777",
+        "type": "hd"
+    }
+},
+{
+    "pk": 4,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "2560",
+		"height": "1600",
+        "relation": "8:5",
+        "result": "1.6000000000000001",
+        "type": "ws"
+    }
+},
+{
+    "pk": 5,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "1920",
+		"height": "1200",
+        "relation": "8:5",
+        "result": "1.6000000000000001",
+        "type": "ws"
+    }
+},
+{
+    "pk": 6,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "1680",
+		"height": "1050",
+        "relation": "8:5",
+        "result": "1.6000000000000001",
+        "type": "ws"
+    }
+},
+{
+    "pk": 7,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "1280",
+		"height": "800",
+        "relation": "8:5",
+        "result": "1.6000000000000001",
+        "type": "ws"
+    }
+},
+{
+    "pk": 8,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "2560",
+		"height": "1920",
+        "relation": "4:3",
+        "result": "1.3333333333333333",
+        "type": "sm"
+    }
+},
+{
+    "pk": 9,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "2048",
+		"height": "1536",
+        "relation": "4:3",
+        "result": "1.3333333333333333",
+        "type": "sm"
+    }
+},
+{
+    "pk": 10,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "1600",
+		"height": "1200",
+        "relation": "4:3",
+        "result": "1.3333333333333333",
+        "type": "sm"
+    }
+},
+{
+    "pk": 11,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "1400",
+		"height": "1050",
+        "relation": "4:3",
+        "result": "1.3333333333333333",
+        "type": "sm"
+    }
+},
+{
+    "pk": 12,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "1280",
+		"height": "960",
+        "relation": "4:3",
+        "result": "1.3333333333333333",
+        "type": "sm"
+    }
+},
+{
+    "pk": 13,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "1024",
+		"height": "768",
+        "relation": "4:3",
+        "result": "1.3333333333333333",
+        "type": "sm"
+    }
+},
+{
+    "pk": 14,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "800",
+		"height": "600",
+        "relation": "4:3",
+        "result": "1.3333333333333333",
+        "type": "sm"
+    }
+},
+{
+    "pk": 15,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "640",
+		"height": "480",
+        "relation": "4:3",
+        "result": "1.3333333333333333",
+        "type": "sm"
+    }
+},
+{
+    "pk": 16,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "2560",
+		"height": "1707",
+        "relation": "3:2",
+        "result": "1.5",
+        "type": "tv"
+    }
+},
+{
+    "pk": 17,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "1440",
+		"height": "960",
+        "relation": "3:2",
+        "result": "1.5",
+        "type": "tv"
+    }
+},
+{
+    "pk": 18,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "1281",
+		"height": "854",
+        "relation": "3:2",
+        "result": "1.5",
+        "type": "tv"
+    }
+},
+{
+    "pk": 19,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "1152",
+		"height": "768",
+        "relation": "3:2",
+        "result": "1.5",
+        "type": "tv"
+    }
+},
+{
+    "pk": 20,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "1280",
+		"height": "1024",
+        "relation": "5:4",
+        "result": "1.25",
+        "type": "sm"
+    }
+},
+{
+    "pk": 21,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "320",
+		"height": "480",
+        "relation": "2:3",
+        "result": "0.66666666666666663",
+        "type": "md"
+    }
+},
+{
+    "pk": 22,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "1152",
+		"height": "864",
+        "relation": "4:3",
+        "result": "1.3333333333333333",
+        "type": "sm"
+    }
+},
+{
+    "pk": 23,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "1200",
+		"height": "900",
+        "relation": "4:3",
+        "result": "1.3333333333333333",
+        "type": "sm"
+    }
+},
+{
+    "pk": 24,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "128",
+		"height": "128",
+        "relation": "1:1",
+        "result": "1.0",
+        "type": "md"
+    }
+},
+{
+    "pk": 25,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "128",
+		"height": "160",
+        "relation": "",
+        "result": "0.0",
+        "type": "md"
+    }
+},
+{
+    "pk": 26,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "174",
+		"height": "132",
+        "relation": "",
+        "result": "0.0",
+        "type": "md"
+    }
+},
+{
+    "pk": 27,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "101",
+		"height": "80",
+        "relation": "",
+        "result": "0.0",
+        "type": "md"
+    }
+},
+{
+    "pk": 28,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "96",
+		"height": "65",
+        "relation": "",
+        "result": "0.0",
+        "type": "md"
+    }
+},
+{
+    "pk": 29,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "176",
+		"height": "220",
+        "relation": "",
+        "result": "0.0",
+        "type": "md"
+    }
+},
+{
+    "pk": 30,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "240",
+		"height": "320",
+        "relation": "",
+        "result": "0.0",
+        "type": "md"
+    }
+},
+{
+    "pk": 31,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "120",
+		"height": "160",
+        "relation": "",
+        "result": "0.0",
+        "type": "md"
+    }
+},
+{
+    "pk": 32,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "320",
+		"height": "240",
+        "relation": "",
+        "result": "0.0",
+        "type": "md"
+    }
+},
+{
+    "pk": 33,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "1200",
+		"height": "900",
+        "relation": "4:3",
+        "result": "1.3333333333333333",
+        "type": "sm"
+    }
+},
+{
+    "pk": 34,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "1024",
+        "height": "600",
+        "relation": "",
+        "result": "0.0",
+        "type": "ws"
+    }
+},
+{
+    "pk": 35,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "480",
+        "height": "272",
+        "relation": "16:9",
+        "result": "1.7777777777777777",
+        "type": "md",
+    }
+},
+{
+    "pk": 36,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "5120",
+        "height": "1600",
+        "relation": "",
+        "result": "0.0",
+        "type": "dm"
+    }
+},
+{
+    "pk": 37,
+    "model": "core.Resolution",
+    "fields": {
+        "width": "3200",
+        "height": "1200",
+        "relation": "",
+        "result": "0.0",
+        "type": "dm"
+    }
+},
+]

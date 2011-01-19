@@ -1,0 +1,96 @@
+{% extends "profile/base.html" %}
+{% load i18n avatars onthefly_thumbnail profile_data wallpapers %}
+
+{% block title %}{% trans "Overview of your profile" %}{% endblock %}
+{% block robots %}noindex,nofollow{% endblock %}
+
+{% block extrajs %}
+    {% comment %}
+    {% if APIKEY and profile.location %}
+        <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key={{ APIKEY }}" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(function() {
+                if (GBrowserIsCompatible()) {
+                    this.map = new GMap2(document.getElementById("location"));
+                    this.map.disableDragging();
+                    this.map.setCenter(new GLatLng({{ profile.latitude|default:"30" }}, {{ profile.longitude|default:"0" }}), 2);
+                    this.marker = new GMarker(new GLatLng({{ profile.latitude }}, {{ profile.longitude }}), {clickable: false, draggable: false});
+                    this.map.addOverlay(this.marker);
+                }
+            });
+        </script>
+    {% endif %}
+    {% endcomment %}
+{% endblock %}
+
+{% block content %}
+    <div class="block">
+        <h2>{% trans "About you" %}</h2>
+        <div class="block-content clearfix">
+            {% if profile.location %}
+                <!-- FIXME: -->
+                <!-- FIXME: Permitir modificar el mapa desde aca mismo. -->
+                <div id="location"></div>
+            {% endif %}
+            <div id="personal">
+                <div id="avatar">
+                    <a href="{% url account-change_avatar %}"><img src="{% avatar %}" alt="Your avatar" /></a>
+                    <a href="{% url account-change_avatar %}">{% if profile.has_avatar %}{% trans "Change avatar" %}{% else %}{% trans "Add avatar" %}{% endif %}</a>
+                    {% if profile.avatar %}
+                        <div>
+                            <!-- TODO: -->
+                            <!-- TODO: Pedir confirmación antes de eliminar el avatar, aunquesea por javascript. -->
+                            <a href="{% url account-delete_avatar %}">{% trans "Delete this avatar" %}</a>
+                        </div>
+                        {% comment %}
+                        <div>
+                            <a href="{% url account-manage_avatars %}">{% trans "Manage my avatars" %}</a>
+                        </div>
+                        {% endcomment %}
+                    {% endif %}
+                </div>
+                <div class="fields">
+                    {% comment %}
+                    <div class="field">
+                        <label>{% trans "Username" %}:</label>
+                        <span class="data">{{ profile.user }}</span>
+                    </div>
+                    {% endcomment %}
+                    <div class="field">
+                        <label>{% trans "Name" %}:</label>
+                        <span class="data">{{ user.get_full_name }}</span>
+                        <span class="change">(<a href="{% url account-change_personal %}">{% trans "Change" %}</a>)</span>
+                    </div>
+                    <div class="field">
+                        <label>{% trans "Password" %}:</label>
+                        <span class="data">*********</span>
+                        <span class="change">(<a href="{% url account-change_password %}">{% trans "Change" %}</a>)</span>
+                    </div>
+                    <div class="field">
+                        <label>{% trans "e-Mail" %}:</label>
+                        <span class="data">{%if not user.email %}<i>{% trans "Not set yet" %}</i>{% else %}{{ user.email }}{% endif %}</span>
+                        <span class="valid">{% if not profile.email_validated %}({% trans "Not validated" %}){% endif %}</span>
+                        <span class="change">(<a href="{% url account-change_email %}">{% trans "Change" %}</a>)</span>
+                    </div>
+                    <div class="field">
+                        <label>{% trans "Website" %}:</label>
+                        <span class="data">{% if profile.url %}<a href="{{ profile.url }}">{{ profile.url }}</a>{% else %}<i>{% trans "Not set yet" %}</i>{% endif %}</span>
+                        <span class="change">(<a href="{% url account-change_personal %}">{% trans "Change" %}</a>)</span>
+                    </div>
+                </div>
+                {% comment %}
+                {% render_fields %}
+                <div class="change">
+                    <a href="{% url account-change_personal %}">{% trans "Edit your information" %}</a>
+                </div>
+                {% endcomment %}
+            </div>
+        </div>
+    </div>
+    <div class="block">
+        <h2>{% trans "My wallpapers" %}</h2>
+        <div class="block-content clearfix">
+            {% my_wallpapers profile.user %}
+        </div>
+    </div>
+{% endblock %}

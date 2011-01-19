@@ -1,0 +1,25 @@
+{% extends "profile/base.html" %}
+{% load i18n %}
+{% block robots %}noindex,nofollow{% endblock %}
+{% block title %}{% trans "User login" %}{% endblock %}
+{% block content %}
+    <div class="block">
+        <h2>{% trans "User login" %}</h2>
+        <div class="block-content">
+            <form action="{% url account-login %}{% if next %}?next={{ next }}{% endif %}" method="post">
+                {% if error %}
+                    <p class="error">
+                        {{ error }}
+                    </p>
+                {% endif %}
+                {{ login_form.as_p }}
+                <p>
+                    <input type="submit" value="{% trans 'Login' %}" />
+                </p>
+            </form>
+            <p>
+                <a href="{% url account-lost_password %}">{% trans "Lost your password?" %}</a> | <a href="{% url signup %}">{% trans "Sign up!" %}</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}

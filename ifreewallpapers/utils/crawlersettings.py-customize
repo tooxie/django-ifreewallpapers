@@ -1,0 +1,3 @@
+SUPPORTED_TYPES = ('image/png', 'image/gif', 'image/jpeg')
+MINIMUM_SIZE = (1024, 768)
+SAVE_TO = ''

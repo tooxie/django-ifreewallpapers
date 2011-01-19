@@ -1,0 +1,14 @@
+<li class="accountfield">
+    <label
+        for="id_{{ field.id }}-{{ choice.id }}"
+        class="choice">
+            {{ choice.choice }}
+    </label>
+    <input
+        type="checkbox"
+        name="{{ field.id }}-{{ choice.id }}"
+        id="id_{{ field.id }}-{{ choice.id }}"
+        class="accountfield"
+        value="{{ choice.id }}"
+        {% ifequal choice.id data.object_id %} checked{% endifequal %} />
+</li>

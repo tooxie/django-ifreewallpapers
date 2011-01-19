@@ -1,0 +1,22 @@
+{% extends "core/base.html" %}
+{% load i18n onthefly_thumbnail %}
+{% block action %}{% trans "Adopting" %} {% endblock %}
+{% block content %}
+    <div class="block">
+        <h2>{% blocktrans with wallpaper.get_title as wallpaper_title %}Adopting {{wallpaper_title }} wallpaper{% endblocktrans %}</h2>
+        <div class="block-content wpdetail clearfix">
+            <div id="wallpaper-wrapper">
+                <div id="wallpaper">
+                    <img src="{% thumb wallpaper.file 600 %}" alt="{{ wallpaper.get_title }}" />
+                </div>
+            </div>
+            <div id="options">
+                <form action="{% url adopt_wallpaper wallpaper.slug %}" method="post">
+                    {{ adopt_form.as_p }}
+                    <input type="hidden" name="confirm" value="{{ confirmation_hash }}" />
+                    <input type="submit" name="adoptit" value="{% trans "Adopt it!" %}" />
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

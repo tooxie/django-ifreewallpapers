@@ -1,0 +1,78 @@
+{% extends "profile/base.html" %}
+{% load i18n avatars %}
+
+{% block title %}{% trans "Choose the location of your avatar" %}{% endblock %}
+{% block robots %}noindex,nofollow{% endblock %}
+
+{% block content %}
+    <div class="block">
+        <h2>{% trans "Choose the location of your avatar" %}</h2>
+        <div class="block-content clearfix">
+            <!-- Utilizar tabs para cada opción, disk, url o wallpaper -->
+            <fieldset>
+                <legend>{% trans "Select an image from disk" %}</legend>
+                <form method="post" action="{% url account-change_avatar %}" enctype="multipart/form-data">
+                    {{ upload_form.as_p }}
+                    <input type="submit" name="submit" value="{% trans "Upload" %}" />
+                </form>
+            </fieldset>
+
+            <fieldset>
+                <legend>{% trans "Retrieve from a remote URL" %}</legend>
+                <form method="post" action="{% url account-change_avatar %}">
+                    {% if retrieve_errors %}
+                        <ul class="errorlist">
+                            {% for error in retrieve_errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    {{ retrieve_form.as_p }}
+                    <input type="submit" name="submit" value="{% trans "Retrieve" %}" />
+                </form>
+            </fieldset>
+
+            <!--
+            <fieldset>
+                <legend>{% trans "Use a wallpaper as avatar" %}</legend>
+                <form method="post" action="{% url account-change_avatar %}">
+                    {{ choose_form.as_p }}
+                    <input type="submit" name="submit" value="{% trans "Search" %}" />
+                </form>
+            </fieldset>
+            -->
+
+            {% if user.get_profile.has_avatar %}
+                <fieldset>
+                    <legend>{% trans "Use one of your previous avatars." %}</legend>
+                    <form method="post" action="{% url account-change_avatar %}">
+                        <ul class="clearfix">
+                            <li class="avatar">
+                                <div>
+                                    <label for="id_default"><img src="{% avatar default %}" alt="{% trans "Default avatar" %}" class="avatar" /></label>
+                                    <input type="radio" id="id_default" name="avatar" value="0"{% if not user.get_profile.avatar %} checked{% endif %} />
+                                </div>
+                            </li>
+                            {% for avatar in user.get_profile.get_avatars %}
+                                <li class="avatar">
+                                    <div class="clearfix">
+                                        <label for="id_{{ avatar.id }}"><img src="{{ avatar.url }}" alt="{{ avatar }}" class="avatar" /></label>
+                                        <input type="radio" id="id_{{ avatar.id }}" name="avatar" value="{{ avatar.id }}"{% if avatar.is_default %} checked{% endif %} />
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <input id="id_action_previous" type="hidden" name="action" value="previous" />
+                        <input type="submit" name="submit" value="{% trans "Use this!" %}" />
+                    </form>
+                </fieldset>
+            {% endif %}
+
+			{% if AVATAR_WEBSEARCH %}
+                <div>
+                    <a class="large" href="{{ request.path_info }}search/">{% trans "Search for an image on Picasa Web" %}</a>
+                </div>
+			{% endif %}
+        </div>
+    </div>
+{% endblock %}

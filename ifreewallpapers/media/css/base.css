@@ -1,0 +1,247 @@
+body {
+    background:#E5E5E5 url(../img/gradient.gif) repeat-x scroll 0% 0%;
+    font-family:Arial, sans-serif;
+    font-size:0.8em;
+    min-width:990px;
+    margin-top:0;
+}
+
+a:link, a:visited {
+    color:blue;
+    text-decoration:none;
+}
+
+a:hover, a:visited:hover {
+    text-decoration:underline;
+}
+
+h1#header-h1, a#header-link {
+    width:366px;
+    height:107px;
+    display:block;
+    float:left;
+    margin:0;
+    padding:0;
+}
+
+div#header {
+    background-image:url(../img/beta.jpg);
+    background-repeat:no-repeat;
+    background-position:top right;
+    /* margin-bottom:35px; */
+    margin:5px 0 10px 0;
+    width:100%;
+}
+
+h1#header-h1 {
+    background-image:url(../img/logo.jpg);
+    background-repeat:no-repeat;
+}
+
+.hideme {
+    position:absolute;
+    left:-1000px;
+}
+
+div#mainmenu ul li {
+    display:inline;
+    margin-right:15px;
+}
+
+div#mainmenu, div#submenu {
+    float:right;
+    position:absolute;
+    right:0;
+}
+
+#header a:link, #header a:visited {
+    color:white;
+    text-decoration:none;
+}
+
+#header a:hover, #header a:visited:hover {
+    text-decoration:underline;
+}
+
+#content {
+    width:990px;
+    margin:0 auto;
+}
+
+div.block {
+    border:1px solid black;
+    margin-bottom:25px;
+}
+
+div.block-content {
+    margin:0 auto;
+    padding:0 1em 1em 1em;
+}
+
+div.block-content label {
+    display:block;
+    float:left;
+    width:8.5em;
+    margin-right:1em;
+    text-align:right;
+    color:black;
+}
+
+div.block h2, div.block h3 {
+    background-color:black;
+    background-image:url(../img/striptitle.jpg);
+    background-repeat:repeat-x;
+    height:1.3em;
+    font-size:1.3em;
+    color:white;
+    text-align:center;
+    margin:0 0 1em 0;
+    margin-bottom:10px;
+    padding:0;
+}
+
+div.wallpaper {
+    float:left;
+    width:256px;
+    margin:1em;
+}
+
+div.miniwallpaper {
+    float:left;
+    width:192px;
+    margin:1em;
+}
+
+div.miniwallpaper img {
+    border:1px solid black;
+}
+
+div.wplist {
+    margin:0 auto;
+    width:66em;
+}
+
+div.wpminilist {
+    margin:0 auto;
+}
+
+div.wpdetail {
+    margin:0 auto;
+    width:74em;
+}
+
+div.block-content p, .submit {
+    margin:1em 0 0 0;
+    color:#666666;
+}
+
+div.block-content p.error, ul.errorlist {
+    color:red;
+}
+
+div#footer {
+    text-align:right;
+    margin-top:1em;
+    font-size:0.8em;
+}
+
+div#menubottom {
+    text-align:center;
+}
+
+div#menubottom ul li {
+    display:inline;
+    margin:0;
+}
+
+div#comments, div.set-comments {
+    text-align:left;
+    float:left;
+    border:1px solid black;
+    margin-bottom:25px;
+}
+
+div#seealso, div#comments, div.set-comments {
+    background-image:url(../img/stripset.jpg);
+    width:37em;
+}
+
+div.set-comments {
+    margin-right:38px;
+}
+
+div.comment div.avatar {
+    float:left;
+    width:96px;
+    margin-right:1em;
+}
+div.comment div.wallpaper {
+    float:right;
+    width:96px;
+    margin:0 0 0 1em;
+}
+
+div.comment div.avatar img, div.comment div.wallpaper img {
+    border:1px solid black;
+}
+div.comment p {
+    margin-top:0;
+}
+
+#seealso {
+    float:right;
+}
+
+div.comment {
+    clear:both;
+    padding-right:2px;
+    margin:1em 0;
+    overflow:auto;
+}
+
+div#comment-preview {
+    float:left;
+}
+
+div#comment-post {
+    float:right;
+}
+
+div.bannerdownload {
+    float:right;
+    clear:both;
+}
+
+div.bannerwallpaper {
+    text-align:center;
+}
+
+div.bannerbottom {
+    text-align:center;
+    display:block;
+    clear:both;
+}
+
+div.bannercomment {
+    float:left;
+    border-width:0;
+    text-align:center;
+    width:37em;
+}
+
+div.bannerdownload a img, div.bannerbottom a img, div.bannerwallpaper a img, div.bannercomment a img {
+    border:1px solid black;
+}
+
+input.textbox, textarea.text {
+    font-size:12px;
+    width:20em;
+}
+
+textarea.text {
+    width:20em;
+    height:10em;
+}
+span.commenter {
+    font-weight:bold;
+}

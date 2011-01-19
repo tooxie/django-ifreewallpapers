@@ -1,0 +1,80 @@
+#avatar img {
+    border-style:inset;
+    margin-right:1em;
+}
+fieldset {
+    margin-bottom:1em;
+}
+span.change, span.valid {
+    margin-left:1em;
+}
+li.accountfield {
+    display:list-item;
+}
+.data {
+    display:block;
+    float:left;
+    clear:right;
+}
+body.profile div.field {
+    overflow:auto;
+    clear:both;
+    display:block;
+    margin-bottom:0.5em;
+}
+body.profile div#avatar, body.profile div.fields {
+    float:left;
+}
+label {
+    clear:left;
+}
+ul.choices {
+    margin:0 0 0 1em;
+    padding:0;
+}
+label.choice {
+    display:inline;
+}
+div#avatar {
+    margin-right:1em;
+    border-width:2px;
+}
+div#avatar img {
+    border-style:inset;
+}
+li.avatar img {
+    border:1px solid black;
+}
+li.avatar {
+    height:96px;
+    display:block;
+    float:left;
+    margin:0 1em 1em 0;
+}
+div.personal, div#personal div#avatar {
+    float:left;
+    display:inline;
+    margin:0 1em 1em 0;
+}
+div.mywallpaper {
+    float:left;
+    margin-left:2em;
+    margin-bottom:2em;
+}
+div.mywallpaper img {
+    border:1px solid black;
+}
+div#personal div#avatar {
+    text-align:center;
+}
+div#personal div#avatar a {
+    display:block;
+}
+div.blog {
+    width:49%;
+    float:left;
+}
+div.usercomments {
+    width:49%;
+    float:right;
+}

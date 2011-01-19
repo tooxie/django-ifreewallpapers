@@ -1,0 +1,235 @@
+{% extends "core/base.html" %}
+{% load i18n onthefly_thumbnail comments %}
+{% block javascript %}
+    <script type="text/javascript" src="{{ JS_URL }}jquery.js"></script>
+    <script type="text/javascript" src="{{ JS_URL }}rating.js"></script>
+{% endblock %}
+{% block content %}
+    <div class="block">
+        <h2>{{ wallpaper.get_title }} wallpaper{% if wallpaper.author %} {% trans "by" %} {{ wallpaper.author }}{% endif %}</h2>
+        <div class="block-content wpdetail clearfix">
+            <div id="wallpaper-wrapper">
+                <div id="wallpaper">
+                    <img src="{% thumb wallpaper.file 600 %}" alt="{{ wallpaper.get_title }}">
+                </div>
+                {% if user.is_authenticated and user.is_superuser %}
+                    {% if not wallpaper.forgiven %}
+                        <div>
+                            <a href="{% url hack-force_forgive wallpaper.id %}">{% trans "forgive --force" %}</a>
+                        </div>
+                    {% endif %}
+                {% endif %}
+                {% comment %}
+                <!-- Banner -->
+                <div class="bannerwallpaper">
+                    <a href="/banner/"><img src="{{ IMG_URL }}banners/{% trans "beach" %}468.png" alt="{% trans "You could be here!" %}"></a>
+                </div>
+                <!-- /Banner -->
+                {% endcomment %}
+            </div>
+            <div id="options">
+                {% if wallpaper.forgiven %}
+                    <!-- Forgiven specific options -->
+                    {% ifnotequal wallpaper.uploader user %}
+                        <div class="detail" id="rating">
+                            <ul class='star-rating'>
+                                <li class='current-rating' id='current-rating'>{{ wallpaper.get_rating }}</li>
+                                {% for rate_option in possible_rates %}
+                                    <li>
+                                        <a href="{% url rate_wallpaper rate=rate_option.score, slug=wallpaper.slug %}" title='{{ rate_option.opinion }}' class='{{ rate_option.stars }}-star{{ rate_option.score|pluralize  }}'>{{ rate_option.score }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            {% if i_rated %}
+                                {% trans "You think:" %} {{ i_rated }}
+                            {% endif %}
+                        </div>
+                    {% endifnotequal %}
+                    <div class="detail" id="downloaded">
+                        {% comment %}
+                        <!-- FIXME: -->
+                        <!-- FIXME: Buscar la forma de que primero aparezca el
+                            uploader, después las opciones limbo-specific,
+                            seguido de las descargas y al final el resto. -->
+                        <!-- FIXME: -->
+                        <!-- FIXME: Pasar estos datos (uploaded by, save/doom, etc...) a tags. -->
+                        {# FIXME: #}
+                        {# FIXME: Como hago para pluralizar "times" y que a su
+                            vez el plural también sea traducible? #}
+                        {% endcomment %}
+                        {% if wallpaper.uploader %}
+                            {% blocktrans with wallpaper.uploader.get_full_name as full_name %}
+                                Uploaded by {{ full_name }}.
+                            {% endblocktrans %}
+                        {% endif %}
+                        {% if wallpaper.uploader %}
+                            {% blocktrans with wallpaper.downloads as how_many %}
+                                Downloaded {{ how_many }} times.
+                            {% endblocktrans %}
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <!-- Guilty specific options -->
+                    {% ifnotequal wallpaper.uploader user %}
+                        <div class="detail clearfix" id="judge">
+                            <div id="saveit">
+                                <a href="{% url save_it wallpaper.slug %}"><img src="{{ IMG_URL }}saveit-{{ LANGUAGE }}.jpg" alt="{% trans "Save It" %}"></a>
+                            </div>
+                            <div id="doomit">
+                                <a href="{% url doom_it wallpaper.slug %}"><img src="{{ IMG_URL }}doomit-{{ LANGUAGE }}.jpg" alt="{% trans "Doom It" %}"></a>
+                            </div>
+                        </div>
+                        {% if was_voted_on %}
+                            <div class="detail" id="confirm-vote">
+                                {% trans "Your vote has been counted. Maybe you want to change it?" %}
+                            </div>
+                        {% endif %}
+                    {% endifnotequal %}
+                {% endif %}
+                {% if wallpaper.uploader %}
+                    <div class="detail" id="uploader">
+                        {% comment %}
+                        <!-- FIXME: -->
+                        <!-- FIXME: Como carajo hago para linkear al profile del usuario??? Es la mejor manera de diferenciar cuando "you" es "yo" de un user.username == "you" -->
+                        {% endcomment %}
+                        {% ifnotequal user wallpaper.uploader %}
+                            {% if user.is_authenticated %}
+                            <div class="detail" id="friend">
+                                <a href="{% url friend_user wallpaper.uploader %}?next={% url view_wallpaper wallpaper.slug %}">{% blocktrans with wallpaper.uploader.get_full_name as uploader %}Friend {{ uploader }}{% endblocktrans %}</a>
+                            </div>
+                            {% endif %}
+                        {% else %}
+                            Uploaded by you.
+                        {% endifnotequal %}
+                    </div>
+                {% endif %}
+                <div class="detail" id="viewed">
+                    {# FIXME: #}
+                    {# FIXME: Como hago para pluralizar "times" y que a su vez el plural también sea traducible? #}
+                    {% blocktrans with wallpaper.viewed as how_many %}
+                        Viewed {{ how_many }} times.
+                    {% endblocktrans %}
+                </div>
+                {% if not wallpaper.uploader %}
+                    {% if user.is_authenticated %}
+                        <div class="detail" id="adopt">
+                            {% if can_adopt %}
+                                <form action="{% url adopt_wallpaper wallpaper.slug %}" method="post">
+                                    <div class="clearfix">
+                                        <span class="adopt-it">{% trans "This wallpaper is an orphan" %}:</span>
+                                        <input type="submit" name="adopt" value="{% trans "Adopt it!" %}">
+                                    </div>
+                                </form>
+                            {% else %}
+                                {% trans "This wallpaper is an orphan but you can only adopt one wallpaper each day." %}
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endif %}
+                {% if wallpaper.tags %}
+                    <div class="detail" id="tags">
+                        {% trans "Tags" %}:
+                        {% for tag in wallpaper.tags %}
+                            <a href="{% url objects_tagged tag %}">{{ tag }}</a>{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <hr>
+                <div class="detail">
+                    <form action="{% url view_wallpaper wallpaper.slug %}" method="post" id="tellafriend">
+                        {{ send_form.as_p }}
+                        <div class="detail" id="tellafriend-submit">
+                            <input type="hidden" name="next" value="{% url view_wallpaper wallpaper.slug %}">
+                            <input type="submit" name="tellafriend-submit" value="{% trans "Tell a friend about this wallpaper" %}">
+                        </div>
+                    </form>
+                </div>
+                {% ifnotequal user wallpaper.uploader %}
+                    <hr>
+                    {% if wallpaper.forgiven %}
+                        <div id="fav">
+                            <a href="{% url fav_wallpaper wallpaper.slug %}">{% if is_fav %}{% trans "Remove it from my favs." %}{% else %}{% trans "I love this one, add it to my favs!" %}{% endif %}</a>
+                        </div>
+                    {% endif %}
+                    {% if random_slug and wallpaper.uploader %}
+                        <div id="another">
+                            <a href="{% url view_wallpaper random_slug %}">{% trans "See another wallpaper from this person" %}</a>
+                        </div>
+                    {% endif %}
+                {% endifnotequal %}
+                {% if user.is_authenticated and wallpaper.forgiven %}
+                    <div class="asavatar">
+                        <a href="{% url account-make_avatar wallpaper.slug %}?next={% url view_wallpaper wallpaper.slug %}">{% trans "Use this wallpaper as avatar" %}</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% comment %}
+    <!-- Banner -->
+    <div class="bannerdownload">
+        <a href="/banner/"><img src="{{ IMG_URL }}banners/{% trans "beach" %}468.png" alt="{% trans "You could be here!" %}"></a>
+    </div>
+    <!-- /Banner -->
+    {% endcomment %}
+    {% if wallpaper.forgiven %}
+        <div class="detail">
+            <form action="{% url download_wallpaper %}" method="post">
+                <!-- TODO: Si el usuario tiene seteado sus resoluciones preferidas, despliego esa lista, de lo contrario los muestro todos en un select -->
+                {{ resolutions_form.as_p }}
+                <div>
+                    <input type="submit" value="{% trans "Download!" %}">
+                    {% comment %}
+                    {% if user.is_anonymous %}
+                        {# TODO: #}
+                        {# TODO: Implementar el no-watermarkeado de wallpaper para usuarios registrados. #}
+                        <span class="information">{% trans "Registered users don't get a watermark in their wallpapers." %} <a href="{% url signup %}" title="{% trans "Signup" %}">{% trans "Signup" %}</a>.</span>
+                    {% endif %}
+                    {% endcomment %}
+                </div>
+            </form>
+        </div>
+        <div id="comments" class="block">
+            {% render_comment_form for wallpaper %}
+        </div>
+    {% else %}
+        <div class="detail">
+            {% trans "You can only download or comment on a wallpaper that's been saved from limbo." %}
+            {% comment %}
+            <!-- TODO: -->
+            <!-- TODO: Link a las FAQ explicando que carajo es todo esto del limbo y como puedo descargar el wallpaper. -->
+            {% endcomment %}
+        </div>
+        {% if let_me_know %}
+            <div class="detail">
+                {% trans "Want to be contacted when this happens?" %}
+                <form action="{% url view_wallpaper wallpaper.slug %}" method="post">
+                    {{ let_me_know.as_p }}
+                    <p>
+                        <input type="hidden" name="next" value="{% url view_wallpaper wallpaper.slug %}">
+                        <input type="submit" name="save" value="{% trans "Yes, contact me" %}">
+                    </p>
+                </form>
+            </div>
+        {% endif %}
+    {% endif %}
+    {% if see_also %}
+        <div id="seealso" class="set block">
+            <h3>{% trans "Check this" %}</h3>
+            <div class="block-content wpminilist clearfix">
+                {% for wallpaper in see_also %}
+                    <div class="miniwallpaper">
+                        <a href="{% url view_wallpaper wallpaper.slug %}" title="{{ wallpaper.get_title }}"><img src="{% thumb wallpaper.file 192x120 %}" alt="{{ wallpaper.get_title }}"></a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    {% comment %}
+    <!-- Banner -->
+    <div class="bannerbottom">
+        <a href="/banner/"><img src="{{ IMG_URL }}banners/{% trans "beach" %}728.png" alt="{% trans "You could be here!" %}"></a>
+    </div>
+    <!-- /Banner -->
+    {% endcomment %}
+{% endblock %}

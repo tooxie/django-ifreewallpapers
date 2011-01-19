@@ -1,0 +1,3 @@
+<li class="accountfield">
+    <label for="id_{{ field.id }}-{{ choice.id }}">{{ choice.choice }}</label> <input type="radio" name="{{ field.id }}" id="id_{{ field.id }}-{{ choice.id }}" class="accountfield" value="{{ choice.id }}"{% ifequal choice.id data.object_id %} checked{% endifequal %} />
+</li>

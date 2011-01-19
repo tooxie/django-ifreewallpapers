@@ -1,0 +1,7 @@
+{% load i18n %}{% blocktrans %}Hi {{ yourname}}!
+{{ myname }} thinks that you are going to love this wallpaper! Click this to see it:
+{{ wallpaper_url }}
+
+If you can't click it paste the address into your browser.
+
+Enjoy!{% endblocktrans %}

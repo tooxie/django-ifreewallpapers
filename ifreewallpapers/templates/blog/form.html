@@ -1,0 +1,11 @@
+{% load i18n %}
+<p>
+    <a href="{% url blog-index user.get_full_name %}">{% trans "See all posts" %}</a>
+</p>
+<div class="blogform">
+    <form method="post" action="{% url blog-do_post %}">
+        <h3>{% trans "New post" %}</h3>
+        {{ post_form.as_p }}
+        <input type="submit" name="postit" value="{% trans "Post it!" %}" />
+    </form>
+</div>

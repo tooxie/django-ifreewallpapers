@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Oops! Page not found" %}
+{% endblock%}
+
+{% block content %}
+    <p>
+        {% trans "The page you requested could not be found. Maybe you followed a broken link." %}
+        {% trans "If you think this is a mistake" %} <a href="{% url contact_us %}">{% trans "contact us" %}</a>.
+    </p>
+{% endblock%}

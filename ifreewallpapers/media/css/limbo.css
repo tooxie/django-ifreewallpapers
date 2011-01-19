@@ -1,0 +1,19 @@
+h1#header-h1 {
+    background-image:url(../img/logo-hell.jpg);
+}
+
+#less, #saveit {
+    float:left;
+}
+
+#more, #doomit {
+    float:right;
+}
+
+#less, #more {
+    margin:0 1em 1em 1em;
+}
+
+.confirm-vote {
+    text-align:center;
+}

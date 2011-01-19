@@ -1,0 +1,4 @@
+<input type="file" name="{{ field.id }}" id="id_{{ field.id }}" />
+{% if data.data.content %}
+    <img src="{{ data.data.content }}" alt="{{ field.name }}" />
+{% endif %}

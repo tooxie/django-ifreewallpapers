@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load i18n onthefly_thumbnail comments %}
+{% block css %}
+    <link href="{{ CSS_URL }}core.css" type="text/css" rel="stylesheet">
+    {% if not wallpaper.forgiven %}
+        <link href="{{ CSS_URL }}limbo.css" type="text/css" rel="stylesheet">
+    {% endif %}
+    <link href="{{ CSS_URL}}rating.css" type="text/css" rel="stylesheet">
+{% endblock %}
+{% block title %}{% block action %}{% endblock %}{% blocktrans with wallpaper.get_title as wallpaper_title %}{{ wallpaper_title }} wallpaper{% endblocktrans %}{% if wallpaper.author %} {% trans "by" %} {{ wallpaper.author }}{% endif %}{% endblock %}
+{% block class %}{% if wallpaper %}{% if not wallpaper.forgiven %} class="limbo"{% endif %}{% endif %}{% endblock %}
+{% block home %}{% if wallpaper and not wallpaper.forgiven %}{% url limbo %}{% else %}{% url home %}{% endif %}{% endblock %}

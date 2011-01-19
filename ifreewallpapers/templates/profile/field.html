@@ -1,0 +1,12 @@
+{% load i18n %}
+<div class="field clearfix">
+    <label for="id_{{ field.name|slugify }}">{{ field.name }}:</label>
+    <div class="data">
+        {{ fielddata }}
+    </div>
+    {% if changeable %}
+        <!--
+        <span class="change">(<a href="{% url account-change_personal %}">{% trans "Change" %}</a>)</span>
+        -->
+    {% endif %}
+</div>

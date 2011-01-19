@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Comment posted" %}{% endblock %}
+{% block content %}
+    <h2>{% trans "Comment posted successfully" %}</h2>
+
+    <p>{% trans "Thanks for contributing." %}</p>
+
+    {% if object %}
+        <ul>
+            <li>
+                <a href="{% url view_wallpaper object.slug %}">{% trans "View your comment" %}</a>
+            </li>
+            <li>
+                <a href="{% url home %}">{% trans "Go back to the homepage" %}</a>
+            </li>
+        </ul>
+    {% endif %}
+{% endblock %}

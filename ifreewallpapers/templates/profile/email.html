@@ -1,0 +1,27 @@
+{% extends "profile/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Password reset" %}{% endblock %}
+{% block robots %}noindex,nofollow{% endblock %}
+
+{% block extrajs %}
+<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.validation.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#id_email").focus();
+        $("input[type='text']").addClass("text");
+    });
+</script>
+{% endblock %}
+
+{% block content %}
+    <fieldset>
+        <legend>{% trans "Change e-Mail" %}</legend>
+        <form action="{% url account-change_email %}" method="post" accept-charset="utf-8">
+            {{ change_form.as_p }}
+            <p>
+                <input type="submit" name="submit" value="{% trans "Send me the confirmation e-mail" %}" />
+            </p>
+        </form>
+    </fieldset>
+{% endblock %}

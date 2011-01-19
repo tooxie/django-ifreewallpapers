@@ -1,0 +1,55 @@
+span.help {
+    margin-left:1em;
+    color:#666666;
+}
+div#wallpaper {
+    text-align:center;
+}
+div#wallpaper img, div#miniwallpaper img {
+    border:1px solid black;
+}
+div.wallpaper a img {
+    border:1px solid black;
+}
+div#wallpaper-wrapper {
+    float:left;
+    width:602px;
+    padding:0;
+}
+label {
+    display:block;
+    float:left;
+    width:9em;
+}
+div#options {
+    float:left;
+    width:34%;
+    margin:0 0 0 1.5em;
+}
+div.detail {
+    margin-bottom:1em;
+}
+div#tellafriend-submit {
+    margin-top:1em;
+    text-align:center;
+}
+div#another {
+    text-align:right;
+}
+div#comments label {
+    float:none;
+    clear:both;
+    text-align:left;
+}
+div#saveit img, div#doomit img {
+    border-width:0;
+}
+/*
+.information {
+    line-height:25px;
+    margin-left:1em;
+    padding-left:2em;
+    vertical-align:middle;
+    background:#E5E5E5 url(../img/ktip.jpg) no-repeat scroll 0% 0%;
+}
+*/

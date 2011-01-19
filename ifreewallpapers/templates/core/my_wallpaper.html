@@ -1,0 +1,6 @@
+{% load onthefly_thumbnail %}
+{% for wallpaper in my_wallpapers %}
+    <div class="mywallpaper">
+        <a href="{% url manage_wallpaper wallpaper.slug %}" title="{{ wallpaper.title }}"><img src="{% thumb wallpaper.file 128x80 %}" /></a>
+    </div>
+{% endfor %}

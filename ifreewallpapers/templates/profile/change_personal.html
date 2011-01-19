@@ -1,0 +1,18 @@
+{% extends 'profile/base.html' %}
+{% load i18n profile_data %}
+
+{% block title %}{% trans "Change personal information" %}{% endblock %}
+
+{% block content %}
+    <div class="block">
+        <h2>{% trans "Edit your information" %}</h2>
+        <div class="block-content clearfix">
+            <form action="{% url account-change_personal %}" method="post" accept-charset="utf-8">
+                {% render_editable_fields %}
+                <p>
+                    <input type="submit" value="{% trans 'Save changes' %}" />
+                </p>
+            </form>
+        </div>
+    </div>
+{% endblock %}

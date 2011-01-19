@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Email sent" %}{% endblock %}
+{% block content %}
+    <h2>Wallpaper shared with {{ name }}</h2>
+    <p>
+        {% trans "The wallpaper was sent to your friend correctly." %}
+        {% trans "Now you can" %} <a href="{% url view_wallpaper slug %}">{% trans "go back to the wallpaper" %}</a> or to the <a href="{{ home }}">{% trans "homepage" %}</a>.
+    </p>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+    {% if editing %}
+        <form method="post" action="{% url blog-do_post %}">
+            {{ post_form.as_p }}
+            <input type="submit" name="postit" value="{% trans "Post it!" %}" />
+        </form>
+        {% if original_post %}
+            <p>
+                {% trans "This is the post with that name" %}:
+            </p>
+            <div class="reminder">
+                {{ original_post|safe }}
+            </div>
+        {% endif %}
+    {% else %}
+        <h2>{{ post.title }}</h2>
+        <div class="postinfo">
+            {% blocktrans with post.cdate as creation %}
+                Written on {{ creation }}
+            {% endblocktrans %}
+        <div class="postcontent">
+            {{ post.html|safe }}
+        </div>
+    {% endif %}
+{% endblock %}

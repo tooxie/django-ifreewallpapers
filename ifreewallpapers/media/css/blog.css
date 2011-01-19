@@ -1,0 +1,14 @@
+.blogform {
+    margin-top:2em;
+}
+h2.posttitle {
+    margin-bottom:0;
+}
+h2.posttitle a:link, h2.posttitle a:visited {
+    color:black;
+}
+div.postinfo {
+    color:gray;
+    font-size:0.8em;
+    margin-left:2em;
+}
